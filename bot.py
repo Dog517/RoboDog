@@ -1,6 +1,9 @@
 import discord
 import responses
-message_author = 'blank'
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 async def send_message(message, user_message, is_private):
     try:
@@ -11,7 +14,7 @@ async def send_message(message, user_message, is_private):
 
 
 def run_discord_bot():
-    TOKEN = 'removed token for security'
+    TOKEN = os.getenv('TOKEN')
     intents = discord.Intents.default()
     intents.message_content = True
 
@@ -40,5 +43,3 @@ def run_discord_bot():
             await send_message(message, user_message, is_private=False)
 
     client.run(TOKEN)
-
-
